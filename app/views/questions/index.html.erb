@@ -1,0 +1,9 @@
+<h1>All Questions</h1>
+<ol>
+  <% @questions.each do |question| %>
+    <li> <%= question.body %> - <%= link_to 'Delete', question_path(question.id), method: :delete %></li>
+  <% end %>
+</ol><br>
+
+<%= link_to "Back", :root %>
+<%= link_to "New test", :new_test_question %>
