@@ -1,6 +1,6 @@
 <h1>All Tests</h1>
 <ol>
   <% @tests.each do |test| %>
-    <li> <%= link_to test.title, test_questions_path(test.id) %> </li>
+    <li> <%= link_to test.title, test_questions_path(test.id) %> <%= test.questions.count %></li>
   <% end %>
 </ol>

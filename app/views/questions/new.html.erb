@@ -1,12 +1,5 @@
-<h1>Create New Question</h1>
+<%= question_header(@question, @test) %>
 
-<form action="<%= test_questions_path %>" method="post">
-  <%= token_tag %>
+<%= render 'form' %>
 
-  <p>
-    <label for="question-body">Body:</label>
-    <input type="text" name="question[body]" id="question-body">
-  </p><br>
-
-  <input type="submit" value="Create">
-</form>
+<%= link_to 'Back', test_questions_path(@test) %>

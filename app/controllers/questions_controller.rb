@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :find_test,     only: %i[index create]
-  before_action :find_question, only: %i[show destroy]
+  before_action :find_test,     only: %i[index create new]
+  before_action :find_question, only: %i[show destroy edit update]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
 
@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @question = Question.new
   end
 
   def create
@@ -18,6 +19,17 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    @question.update(question_params)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
