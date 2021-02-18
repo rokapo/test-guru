@@ -9,13 +9,13 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @question = @test.questions.new
   end
 
   def create
     @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to :test_questions
+      redirect_to test_questions_path(@question.test)
     else
       render :new
     end
@@ -29,12 +29,12 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update(question_params)
-    redirect_back(fallback_location: root_path)
+    redirect_to test_questions_path(@question.test)
   end
 
   def destroy
     @question.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to test_questions_path(@question.test)
   end
 
   private
