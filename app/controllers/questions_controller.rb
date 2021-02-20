@@ -4,9 +4,7 @@ class QuestionsController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
 
-  def index
-    @questions = @test.questions
-  end
+  def index; end
 
   def new
     @question = @test.questions.new
@@ -15,7 +13,7 @@ class QuestionsController < ApplicationController
   def create
     @question = @test.questions.new(question_params)
     if @question.save
-      redirect_to test_questions_path(@question.test)
+      redirect_to @test
     else
       render :new
     end
@@ -27,12 +25,12 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update(question_params)
-    redirect_to test_questions_path(@question.test)
+    redirect_to @question.test
   end
 
   def destroy
     @question.destroy
-    redirect_to test_questions_path(@question.test)
+    redirect_to @question.test
   end
 
   private
